@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Results</h1>
+        {% if issues %}
+            <ul>
+            {% for line, message in issues %}
+                <li>Line {{ line }}: {{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No ZeroDivisionError risks detected.</p>
+        {% endif %}
+        <button onclick="window.location.href='/'">Upload Another File</button>
+    </div>
+</body>
+</html>

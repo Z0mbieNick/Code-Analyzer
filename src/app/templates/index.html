@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZeroDivisionError Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>File Upload - ZeroDivisionError Checker</h1>
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="file-upload-wrapper">
+                <label class="file-upload-label" for="file">Select a Python File</label>
+                <input type="file" name="file" id="file">
+            </div>
+            <input type="submit" value="Analyze">
+        </form>
+    </div>
+</body>
+</html>
