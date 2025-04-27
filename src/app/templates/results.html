@@ -12,8 +12,17 @@
 
         {% if issues %}
             <ul>
-                {% for line, message in issues %}
-                    <li>Line {{ line }}: {{ message }}</li>
+                {% for line, severity, message in issues %}
+                    <li>
+                        {% if severity == "Critical" %}
+                            ❗ <strong style="color:red;">Critical</strong>
+                        {% elif severity == "Warning" %}
+                            ⚠️ <strong style="color:orange;">Warning</strong>
+                        {% else %}
+                            ℹ️ <strong style="color:blue;">Info</strong>
+                        {% endif %}
+                        - Line {{ line }}: {{ message }}
+                    </li>
                 {% endfor %}
             </ul>
         {% else %}
