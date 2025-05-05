@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZeroDivisionError Checker</title>
+    <title>Sentinel Hawk</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='Sentinel_Hawk_favicon_white.png') }}">
+
     <script>
     function checkFile() {
         const fileInput = document.getElementById('file');
-        const message = document.getElementById('fileMessage');
-        const file = fileInput.files[0];
+        const message   = document.getElementById('fileMessage');
+        const file      = fileInput.files[0];
 
         if (!file) {
             message.innerHTML = '';
@@ -18,21 +23,21 @@
 
         if (file.name.endsWith('.py')) {
             message.style.color = 'green';
-            message.innerHTML = 'Valid Python file selected.';
+            message.innerHTML   = 'Valid Python file selected.';
         } else {
             message.style.color = 'red';
-            message.innerHTML = 'Invalid file type. Please select a .py file.';
+            message.innerHTML   = 'Invalid file type. Please select a .py file.';
         }
     }
     </script>
 </head>
 <body>
     <div class="container">
-        <h1>File Upload - ZeroDivisionError Checker</h1>
+        <h1>Sentinel Hawk</h1>
 
         <form action="/" method="post" enctype="multipart/form-data">
             <div class="file-upload-wrapper">
-                <label class="file-upload-label" for="file">Select a Python File</label>
+                <label class="file-upload-label" for="file">Python Datei Auswählen</label>
                 <input type="file" name="file" id="file" onchange="checkFile()">
             </div>
 
@@ -40,7 +45,7 @@
             <p id="fileMessage" style="font-weight: bold; margin-bottom: 10px;"></p>
 
             <!-- Upload/Analyze button -->
-            <input type="submit" id="submitButton" value="Analyze File">
+            <input type="submit" id="submitButton" value="Datei Analyzieren">
         </form>
     </div>
 </body>

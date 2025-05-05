@@ -3,21 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis Results</title>
+    <title>Ergebnisse</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png"
+          href="{{ url_for('static', filename='Sentinel_Hawk_favicon_white.png') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Analysis Results</h1>
+        <h1>Ergebnisse</h1>
 
         {% if issues %}
             <ul>
                 {% for line, severity, message in issues %}
                     <li>
                         {% if severity == "Critical" %}
-                            ❗ <strong style="color:red;">Critical</strong>
+                            ❗ <strong style="color:red;">Kritisch</strong>
                         {% elif severity == "Warning" %}
-                            ⚠️ <strong style="color:orange;">Warning</strong>
+                            ⚠️ <strong style="color:orange;">Warnung</strong>
                         {% else %}
                             ℹ️ <strong style="color:blue;">Info</strong>
                         {% endif %}
@@ -29,7 +33,7 @@
             <p>No security or code quality issues detected. ✅</p>
         {% endif %}
 
-        <button onclick="window.location.href='/'">Analyze Another File</button>
+        <button onclick="window.location.href='/'">Weitere Datei Analyzieren</button>
     </div>
 </body>
 </html>
