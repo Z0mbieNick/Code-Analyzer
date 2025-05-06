@@ -19,25 +19,25 @@ class SecurityChecker(ast.NodeVisitor):
     def visit_BinOp(self, node):
         if isinstance(node.op, ast.Div):
             if isinstance(node.right, ast.Constant) and node.right.value == 0:
-                self.issues.append((node.lineno, "Critical", "Division by zero detected!"))
+                self.issues.append((node.lineno, "Critical", "Division durch Null erkannt!"))
             else:
-                self.issues.append((node.lineno, "Warning", "Potential division by zero (consider try-except)."))
+                self.issues.append((node.lineno, "Warning", "Mögliche Division durch Null (bitte try-except erwägen)."))
         self.generic_visit(node)
 
     def visit_Import(self, node):
         for alias in node.names:
             if alias.name in ['pickle', 'subprocess', 'hashlib', 'random']:
                 severity = "Info" if alias.name == "random" else "Warning"
-                self.issues.append((node.lineno, severity, f"Suspicious import detected: {alias.name}"))
+                self.issues.append((node.lineno, severity, f"Verdächtiger Import entdeckt: {alias.name}"))
         self.generic_visit(node)
 
     def visit_Call(self, node):
         if isinstance(node.func, ast.Name) and node.func.id in ['eval', 'exec']:
-            self.issues.append((node.lineno, "Critical", f"Dangerous function used: {node.func.id}"))
+            self.issues.append((node.lineno, "Critical", f"Gefährliche Funktion verwendet: {node.func.id}"))
         self.generic_visit(node)
 
     def run_regex_checks(self):
         for pattern_name, (pattern, severity) in self.INSECURE_PATTERNS.items():
             for i, line in enumerate(self.code, start=1):
                 if re.search(pattern, line):
-                    self.issues.append((i, severity, f"Pattern detected: {pattern_name}"))
+                    self.issues.append((i, severity, f"Muster erkannt: {pattern_name}"))
